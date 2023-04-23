@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* 배경속성 */
+body{
+    background-image: linear-gradient(180deg, black, rgb(29, 29, 29));
+    height: 100vh;
+}
+/* 본문 위치 속성 */
+.main_index{
+    position: absolute;
+    top: 600px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+/* 본문 버튼 위치 */
+.button_hold{
+    margin-top: 50px;   
+}
+/* 본문 버튼속성 */
+#start_button{
+    text-decoration: none;
+    font-size: 15pt;
+    color: gray;
+    border-radius: 30px;
+    padding: 15px 80px;
+    border: 1px solid gray;
+    background-color: rgba(0, 0, 0, 0);
+}
+/* 본문 버튼 마우스오버 효과 */
+#start_button:hover{
+    background-color: white;
+    color: black;
+    transition: 0.5s ease;
+}
+
