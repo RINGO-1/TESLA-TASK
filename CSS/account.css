@@ -60,7 +60,7 @@
     font-family: 'Noto_Light';
     position: absolute;
     word-spacing: 40px;
-    top: 500px;
+    top: 300px;
     left: 50%;
     transform: translate(-50%, -50%);
 }

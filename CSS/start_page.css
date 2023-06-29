@@ -4,13 +4,13 @@
 }
 /* 배경속성 */
 body{
-    background-image: linear-gradient(180deg, black, rgb(29, 29, 29));
+    background-image: linear-gradient(180deg, black, rgb(107, 107, 107));
     height: 100vh;
 }
 /* 본문 위치 속성 */
 .main_index{
     position: absolute;
-    top: 600px;
+    top: 450px;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;

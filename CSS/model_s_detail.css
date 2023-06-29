@@ -145,7 +145,7 @@
 .main_title{
     position: absolute;
     left: 50%;
-    top: 300px;
+    top: 200px;
     color: black;
     font-family: 'TT_Medium';
     font-size: 35pt;
@@ -155,7 +155,7 @@
 .sub_title{
     position: absolute;
     left: 50%;
-    top: 340px;
+    top: 240px;
     font-family: 'TT_Light';
     font-size: 17pt;
     transform: translate(-50%, -50%);
@@ -164,7 +164,7 @@
 .performance{
     display: block;
     position: absolute;
-    top: 1000px;
+    top: 800px;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
@@ -199,7 +199,7 @@ td{
 .order a{
     position: absolute;
     left: 50%;
-    top: 1100px;
+    top: 870px;
     border: 3px solid white;
     transform: translate(-50%, -50%);
     padding: 5px 60px;
@@ -240,7 +240,7 @@ td{
 .aero_script_holder{
     position: absolute;
     left: 50%;
-    top: 100px;
+    top: 70px;
 }
 /* 3행 타이틀 내부 속성 */
 .aero_main_title{

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="   CSS/order_model_s.css">
+    <script src="Scripts/code.jquery.com_jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            var buttonIds = ["white", "black", "silver", "blue", "red"];
+            var trimOptions = ["basic", "plaid"];
+            var currentTrimIndex = 0;
+            var currentColorIndex = 0;
+
+            var imageSources = {
+                basic: [
+                    "image_sources/model_s_order_detail/basic_white",
+                    "image_sources/model_s_order_detail/basic_black",
+                    "image_sources/model_s_order_detail/basic_silver",
+                    "image_sources/model_s_order_detail/basic_blue",
+                    "image_sources/model_s_order_detail/basic_red",
+                ],
+                plaid: [
+                    "image_sources/model_s_order_detail/plaid_white",
+                    "image_sources/model_s_order_detail/plaid_black",
+                    "image_sources/model_s_order_detail/plaid_silver",
+                    "image_sources/model_s_order_detail/plaid_blue",
+                    "image_sources/model_s_order_detail/plaid_red",
+                ],
+            };
+
+            var currentImageIndex = 1;
+            var currentImageSource =
+                imageSources[trimOptions[currentTrimIndex]][currentColorIndex] +
+                currentImageIndex +
+                ".jpg";
+
+            $("#image").html("<img src='" + currentImageSource + "'>");
+            $("#" + buttonIds[currentColorIndex]).addClass("selected");
+            $("#" + trimOptions[currentTrimIndex]).addClass("active");
+
+            function updateImage() {
+                currentImageSource =
+                    imageSources[trimOptions[currentTrimIndex]][currentColorIndex] +
+                    currentImageIndex +
+                    ".jpg";
+                $("#image img").attr("src", currentImageSource);
+            }
+
+            function updateStats() {
+                var selectedTrim = trimOptions[currentTrimIndex];
+                var stats = $("#stats");
+
+                if (selectedTrim === "basic") {
+                    stats.find("td:nth-child(1)").text("550 km");
+                    stats.find("td:nth-child(2)").text("240 km/h");
+                    stats.find("td:nth-child(3)").text("3.2 초");
+                } else if (selectedTrim === "plaid") {
+                    stats.find("td:nth-child(1)").text("474 km"); // Update with the actual value for Plaid trim
+                    stats.find("td:nth-child(2)").text("322 km/h"); // Update with the actual value for Plaid trim
+                    stats.find("td:nth-child(3)").text("2.1 초"); // Update with the actual value for Plaid trim
+                }
+            }
+
+            function updateColorButtons() {
+                $("#" + buttonIds[currentColorIndex])
+                    .addClass("selected")
+                    .siblings()
+                    .removeClass("selected");
+            }
+
+            function updateDescription() {
+                if ($("#basic").hasClass("active")) {
+                    $("#basic_description").addClass("visible").removeClass("hidden");
+                    $("#plaid_description").addClass("hidden").removeClass("visible");
+                } else {
+                    $("#basic_description").addClass("hidden").removeClass("visible");
+                    $("#plaid_description").addClass("visible").removeClass("hidden");
+                }
+            }
+
+            $("#left").click(function () {
+                currentImageIndex = (currentImageIndex - 2 + 4) % 4 + 1;
+                updateImage();
+            });
+
+            $("#right").click(function () {
+                currentImageIndex = (currentImageIndex % 4) + 1;
+                updateImage();
+            });
+
+            $("#basic").click(function () {
+                $(this).addClass("active");
+                $("#plaid").removeClass("active");
+                currentTrimIndex = 0;
+                updateStats();
+                updateImage();
+                updateDescription();
+                $("#plaid_description").removeClass("visible");
+                $("#plaid_description").addClass("hidden");
+            });
+
+            $("#plaid").click(function () {
+                $(this).addClass("active");
+                $("#basic").removeClass("active");
+                currentTrimIndex = 1;
+                updateStats();
+                updateImage();
+                updateDescription();
+                $("#basic_description").removeClass("visible");
+                $("#basic_description").addClass("hidden");
+            });
+
+            $(".button_holder button").click(function () {
+                currentColorIndex = buttonIds.indexOf($(this).attr("id"));
+                updateImage();
+                updateColorButtons();
+                updateStats();
+                updateDescription();
+            });
+
+            updateStats();
+        });
+
+    </script>
+</head>
+
+<body>
+    <div class="top_fixed_bar">
+        <span class="top_fixed_bar_left"><a href="main_index.html">T E S L A</a></span>
+    </div>
+    <span class="reference_holder">
+        <div id="image"></div>
+        <div id="buttons">
+            <button id="left"><</button>
+            <button id="right">></button>
+        </div>
+    </span>
+    <span class="detail_holder">
+        <div id="main_text">
+            <p id="title">Model S</p>
+            <table class="vehicle_performance">
+                <tr id="stats">
+                    <td>
+                        <p>550</p>
+                        <p>km</p>
+                    </td>
+                    <td>
+                        <p>240</p>
+                        <p>km/h</p>
+                    </td>
+                    <td>
+                        <p>3.2</p>
+                        <p>초</p>
+                    </td>
+                </tr>
+                <tr id="specs">
+                    <td>주행 가능 거리</td>
+                    <td>최고속도</td>
+                    <td>0-100 km/h</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+        <div class="trim_select">
+            <div id="dual_motor">
+                <p id="description">듀얼 모터 상시 사륜구동(AWD)</p>
+                <button id="basic">
+                    <p>Model S</p>
+                    <p>₩128,061,000</p>
+                </button>
+            </div>
+            <div id="tri_motor">
+                <p id="description">트라이 모터 상시 사륜구동(AWD)</p>
+                <button id="plaid">
+                    <p>Model S Plaid</p>
+                    <p>₩141,061,000</p>
+                </button>
+            </div>
+        </div>
+        <div id="basic_description"></div>
+        <div id="plaid_description">
+            <p>Plaid 업그레이드 기능</p>
+            <p>포함</p>
+            <ul>
+                <li>양산차 중 압도적인 가속력</li>
+                <li>0-100km/h: 약 2.1초</li>
+                <li>쿼터 마일: 9.23초</li>
+                <li>1,020 마력</li>
+                <li>카본 슬리브 로터가 탑재된 3개의 고성능 모터</li>
+                <li>더 높은 내열성을 갖춘 프레이크 패드</li>
+                <li>카본 파이버 스포일러</li>
+            </ul>
+        </div>
+        <div id="color">색상</div>
+        <div class="button_holder">
+            <button id="white"></button>
+            <button id="black"></button>
+            <button id="silver"></button>
+            <button id="blue"></button>
+            <button id="red"></button>
+        </div>
+        <div id="order">
+            <a href="wip.html"><button>주문하기</button></a>
+        </div>
+    </span>
+</body>
+
+</html>
